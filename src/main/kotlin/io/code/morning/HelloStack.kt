@@ -16,11 +16,11 @@ class HelloStack @JvmOverloads constructor(parent: App, id: String, localCodePat
         val functionProps = FunctionProps.builder()
             .runtime(Runtime.JAVA_8)
             .code(Code.fromAsset(System.getProperty("user.dir") + localCodePath))
-            .handler("io.code.morning.SimpleLambdaFunction::handleRequest")
-            .functionName("handleRequest")
+            .handler("io.code.morning.SimpleLambdaFunction")
+            .functionName("SimpleLambdaFunction")
             .timeout(Duration.seconds(10))
             .build()
 
-        val function = Function(this, "HelloHandler", functionProps)
+        val function = Function(this, "SimpleLambdaFunction", functionProps)
     }
 }

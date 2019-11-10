@@ -3,6 +3,9 @@ plugins {
     id 'application'
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 group 'io.code.morning'
 version '1.0.0'
 
@@ -23,6 +26,10 @@ dependencies {
     implementation 'software.amazon.awscdk:iam:1.14.0.DEVPREVIEW'
     implementation 'software.amazon.awscdk:lambda:1.15.0.DEVPREVIEW'
 
+    // post Slack
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.10.0'
+    implementation 'com.github.kittinunf.fuel:fuel:2.2.1'
+
     // Testing
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
@@ -40,10 +47,12 @@ application {
 }
 
 task buildZip(type: Zip) {
-    from compileJava
+    //from compileJava
+    from compileKotlin
     from processResources
     into('lib') {
-        from configurations.runtimeClasspath
+//        from configurations.runtimeClasspath
+        from configurations.compileClasspath
     }
 }
 
