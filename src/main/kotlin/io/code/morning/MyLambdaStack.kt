@@ -9,18 +9,19 @@ import software.amazon.awscdk.services.lambda.Function
 import software.amazon.awscdk.services.lambda.FunctionProps
 import software.amazon.awscdk.services.lambda.Runtime
 
-class HelloStack @JvmOverloads constructor(parent: App, id: String, localCodePath: String, props: StackProps? = null) :
+class MyLambdaStack @JvmOverloads constructor(parent: App, id: String, localCodePath: String, props: StackProps? = null) :
     Stack(parent, id, props) {
 
     init {
         val functionProps = FunctionProps.builder()
             .runtime(Runtime.JAVA_8)
             .code(Code.fromAsset(System.getProperty("user.dir") + localCodePath))
-            .handler("io.code.morning.SimpleLambdaFunction")
-            .functionName("SimpleLambdaFunction")
+            .handler("io.code.morning.FunctionSendSlackNotification")
+            .functionName("FunctionSendSlackNotification")
+            .memorySize(512)
             .timeout(Duration.seconds(10))
             .build()
 
-        val function = Function(this, "SimpleLambdaFunction", functionProps)
+        val function = Function(this, "FunctionSendSlackNotification", functionProps)
     }
 }

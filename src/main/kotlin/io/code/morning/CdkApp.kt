@@ -7,8 +7,8 @@ import software.amazon.awscdk.core.StackProps
 fun main() {
     val app = App()
 
-    HelloStack(
-        app, "MySimpleLambda", "/build/distributions/aws-lambda-cdk-kotlin-1.0.0.zip",
+    MyLambdaStack(
+        app, "FunctionSendSlackNotification", "/build/distributions/aws-lambda-cdk-kotlin-1.0.0.zip",
         StackProps.builder()
             .env(
                 Environment.builder()
@@ -18,6 +18,5 @@ fun main() {
             .build()
     )
 
-//    app.run()
     app.synth()
 }

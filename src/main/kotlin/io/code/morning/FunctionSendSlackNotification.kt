@@ -8,9 +8,7 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.result.Result
 import org.apache.logging.log4j.LogManager
 
-data class Response(val body: String)
-
-class SimpleLambdaFunction : RequestHandler<Any, Any> {
+class FunctionSendSlackNotification : RequestHandler<Any, Any> {
     companion object {
         private val log = LogManager.getLogger()
     }
@@ -23,7 +21,8 @@ class SimpleLambdaFunction : RequestHandler<Any, Any> {
 
     fun sendSlackMessage() {
         val mapper = jacksonObjectMapper()
-        val webhookUrl: String = "https://hooks.slack.com/services/xxx/xxx/xxx"
+//        val webhookUrl: String = "https://hooks.slack.com/services/xxx/xxx/xxx"
+        val webhookUrl: String = "https://hooks.slack.com/services/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"
         val body: String = mapper.writeValueAsString(SlackMessage(
             text = "Hello Lambda"
         ))
